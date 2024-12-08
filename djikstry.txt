@@ -1,0 +1,72 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+class NodeG{
+    public int data;
+}
+
+class Element
+{
+    NodeG wezel;
+    int dystans;
+    NodeG poprzednik;
+    int inf = int.MaxValue;
+
+    
+}
+class Edge
+{
+    public Edge start;
+    public Edge end;
+    public Edge dystans;
+}
+
+class Graf
+{
+    public NodeG start;
+    public NodeG end;
+    public int waga;
+    
+
+
+    List<Element> element;
+    List<NodeG> nodes = new List<NodeG>();
+    List<Edge> edges = new List<Edge>();
+
+    
+
+    List<Element> AlgorytmDijkstry(NodeG start)
+    {
+        var tabelka = this.PrzygotujTabelke(start);
+        var S = new List<NodeG>();
+        var wynik = new List<Element>();
+    
+
+        var kandydant = tabelka.Where(e => !S.Contains(e.wezel)).OrderBy(e => e.dystans).First();
+        var kandydatsasiedzi = this.edges.Where(k => k.start == kandydant.wwezel && !S.dystans(k.end)).ToList();
+    }
+    
+    
+}
+
+
+
+namespace cw04
+{
+    internal static class Program
+    {
+        /// <summary>
+        /// Główny punkt wejścia dla aplikacji.
+        /// </summary>
+        [STAThread]
+        static void Main()
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Form1());
+        }
+    }
+}

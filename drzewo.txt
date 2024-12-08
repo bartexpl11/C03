@@ -1,0 +1,102 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+class NodeG
+{
+    int data;
+    NodeG(int liczba)
+    {
+        this.data = liczba;
+    }
+}
+
+class Edge
+{
+    public NodeG start;
+    public NodeG end;
+    public int weight;
+    public Edge(NodeG start, NodeG end, int weight)
+    {
+        this.start = start;
+        this.end = end;
+        this.weight = weight;
+    }
+}
+
+class Graph
+{
+    List<NodeG> nodes = new List<NodeG>();
+    List<Edge> edges = new List<Edge>();
+
+    
+ //   public void AddEdge(NodeG start,NodeG end, int weight)
+ //   {
+ //       edges.Add(new Edge(start,end,weight));
+ //   }
+   
+    void Add(Edge k)
+    {
+        
+        if (!this.nodes.Contains(k.start))
+        {
+            this.nodes.Add(k.start);
+        }
+        if (!this.nodes.Contains(k.end))
+        {
+            this.nodes.Add(k.end);
+        }
+
+    }
+
+    int IleNowychWezlow(Edge k)
+    {
+        int wynik = 0;
+        if (!this.nodes.Contains(k.start))
+        {
+            wynik++;
+        }
+        if (!this.nodes.Contains(k.end))
+        {
+            wynik++;
+        }
+        return wynik;
+    }
+
+    void Join(Graph g)
+    {
+        foreach(var k in g.edges)
+        {
+            this.Add(k);
+        }
+    }
+
+    Graph(Edge k)
+    {
+        if (!this.edges.Contains(k))
+        {
+            this.edges.Add(k);
+        }
+    }
+}
+
+namespace algorytm_kruskala
+{
+    internal static class Program
+    {
+        /// <summary>
+        /// Główny punkt wejścia dla aplikacji.
+        /// </summary>
+        [STAThread]
+        static void Main()
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Form1());
+           
+           
+        }
+    }
+}
